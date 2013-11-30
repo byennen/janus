@@ -9,28 +9,7 @@ popular plug-ins and the most common mappings.
 The distribution is completely customisable using a `~/.vimrc.before`
 and `~/.vimrc.after` Vim RC files.
 
-# UPGRADING FROM JANUARY 1st 2012 THROUGH JANUARY 10th
-
-Please run `rake` twice before running macvim; make sure `command-t` is
-gone.
-
-# UPGRADING FROM BEFORE JANUARY 1st 2012
-
-If you were using Janus before January 2012, note that Janus has gone
-through a rewrite to make it more stable and customizable. Most notably,
-you can now disable plugins using `janus#disable_plugin` and customize
-Janus using `~/.vimrc.before` and `~/.vimrc.after`. See the rest of this
-`README` and the [Customization wiki page](https://github.com/carlhuda/janus/wiki/Customization).
-
-To upgrade to the latest version:
-
-1. remove `~/.vim`, `~/.vimrc` and `~/.gvimrc`.
-2. move customizations from `~/.vimrc.local` to `~/.vimrc.before` and
-   `~/.vimrc.after`.
-3. Do the same with `/.gvimrc.local`.
-4. Run the installer: `curl -Lo- https://bit.ly/janus-bootstrap | bash`
-
-## Updating to the latest version (from any time after January 10th, 2012)
+## Updating to the latest version
 
 To update to the latest version of the distribution, just run `rake`
 inside your `~/.vim` directory.
@@ -213,9 +192,8 @@ Janus ships with a number of basic customizations for vim:
   a vertical split)
 * `<leader>et` expands to `:tabe (directory of current file)/` (open in
   a new tab)
-* `:w!!` expands to `%!sudo tee > /dev/null %`. Write to the current file
-  using sudo (if you forgot to run it with sudo), it will prompt for
-sudo password when writing
+* Write a privileged file with `:SudoW` or `:SudoWrite`, it will prompt
+  for sudo password when writing
 * `<F4>` toggles paste mode
 * `<leader>fef` formats the entire file
 * `<leader>u` converts the entire word to uppercace
@@ -279,6 +257,20 @@ NERDTree:
 * In general, assume that there is a single NERDTree buffer on the left
   and one or more editing buffers on the right
 
+## [Unimpaired](https://github.com/tpope/vim-unimpaired)
+
+This plugin provides a lot of useful mappings, here's a brief example of
+what it does provide:
+
+* `[b` to go to the previous buffer
+* `]b` to go to the next buffer
+* `[n` to go to the previous SCM conflict marker
+* `]n` to go to the next SCM conflict marker
+
+Please check [`:help
+unimpaired`](https://github.com/tpope/vim-unimpaired/blob/master/doc/unimpaired.txt)
+for a complete list
+
 ## [SuperTab](http://github.com/ervandew/supertab)
 
 In insert mode, start typing something and hit `<TAB>` to tab-complete
@@ -296,6 +288,19 @@ execute their script to find them.
 Tagbar is a vim plugin for browsing the tags of source code files.
 
 **Customizations**: Janus binds `<Leader>rt` to toggle Tagbar.
+
+## [SnipMate](https://github.com/garbas/vim-snipmate)
+SnipMate defines text snippets (a series of characters) that expand to
+a useful piece of code when tab is pressed.  For example, in a Ruby
+file, def`<TAB>` expands to:
+```ruby
+def method_name
+
+end
+```
+After typing in the method name, press tab again to put the cursor right
+where you want it on the next line.  [This repository](https://github.com/honza/vim-snippets/tree/master/snippets)
+has a full list of the Snippets that are available in Janus.
 
 ## [EasyMotion](https://github.com/Lokaltog/vim-easymotion)
 
@@ -404,14 +409,7 @@ Janus ships with a few additional syntaxes:
   global config to set this if you have EDITOR set to something else
   `$ git config --global core.editor 'vim -f'`
 
-## Rakefile
-
-If you're looking for the old janus distribution controlled by a
-Rakefile then please head over to the [rakefile
-branch](https://github.com/carlhuda/janus/tree/rakefile) but please note
-that the rakefile branch will not be maintained.
-
-## License
+# License
 
 ### This code is free to use under the terms of the MIT license.
 
